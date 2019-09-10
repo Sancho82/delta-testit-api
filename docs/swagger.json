@@ -1,0 +1,997 @@
+{
+  "swagger": "2.0",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ],
+  "info": {
+    "title": "FLOW TestIT API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "description": "Logs in user",
+        "parameters": [
+          {
+            "$ref": "#/definitions/LoginRequest"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logs in user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Auth failed"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Returns a list of all users",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          },
+          "400": {
+            "description": "Failed to show users"
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/userData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Failed to create user"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns user by id",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "User with given id does not exist"
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          },
+          {
+            "$ref": "#/parameters/userData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Failed to update user"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "User with given id does not exist."
+          }
+        }
+      }
+    },
+    "/questions": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Returns a list of all questions",
+            "schema": {
+              "$ref": "#/definitions/Questions"
+            }
+          },
+          "400": {
+            "description": "Failed to show questions"
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/questionData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New question created",
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          },
+          "400": {
+            "description": "Failed to create question"
+          }
+        }
+      }
+    },
+    "/questions/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns question by id",
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          },
+          "400": {
+            "description": "Question with given id does not exist"
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          },
+          {
+            "$ref": "#/parameters/questionData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Question updated",
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          },
+          "400": {
+            "description": "Failed to update question"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Question deleted",
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          },
+          "400": {
+            "description": "Question with given id does not exist."
+          }
+        }
+      }
+    },
+    "/tests": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Returns a list of all tests",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          },
+          "404": {
+            "description": "Failed to show tests"
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/testData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New test created",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          },
+          "400": {
+            "description": "Failed to create test"
+          }
+        }
+      }
+    },
+    "/tests/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns test by id",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          },
+          "400": {
+            "description": "Test with given id does not exist"
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          },
+          {
+            "$ref": "#/parameters/testData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Test updated",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          },
+          "400": {
+            "description": "Failed to update Test"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Test deleted",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          },
+          "400": {
+            "description": "Test with given id does not exist."
+          }
+        }
+      }
+    },
+    "/tests/{id}/create": {
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          },
+          {
+            "$ref": "#/parameters/createResultData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Results created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Returns a list of all groups",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          },
+          "404": {
+            "description": "Failed to show groups"
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/groupData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New group created",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          },
+          "400": {
+            "description": "Failed to create Group"
+          }
+        }
+      }
+    },
+    "/groups/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns group by id",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          },
+          "400": {
+            "description": "Group with given id does not exist"
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          },
+          {
+            "$ref": "#/parameters/groupData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group updated",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          },
+          "400": {
+            "description": "Failed to update Group"
+          }
+        }
+      }
+    },
+    "/answers": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Returns a list of all answers",
+            "schema": {
+              "$ref": "#/definitions/Answer"
+            }
+          },
+          "404": {
+            "description": "Failed to show answers"
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/answerData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New answer created",
+            "schema": {
+              "$ref": "#/definitions/Answer"
+            }
+          },
+          "400": {
+            "description": "Failed to create Answer"
+          }
+        }
+      }
+    },
+    "/answers/{id}": {
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Answer deleted",
+            "schema": {
+              "$ref": "#/definitions/Answer"
+            }
+          },
+          "400": {
+            "description": "Answer with given id does not exist."
+          }
+        }
+      }
+    },
+    "/results": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns result by id",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "400": {
+            "description": "Result with given id does not exist"
+          }
+        }
+      }
+    },
+    "/subjects": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Returns a list of all subjects",
+            "schema": {
+              "$ref": "#/definitions/Subjects"
+            }
+          },
+          "400": {
+            "description": "Failed to show subjects"
+          }
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/subjectData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New subject created",
+            "schema": {
+              "$ref": "#/definitions/Subject"
+            }
+          },
+          "400": {
+            "description": "Failed to create subject"
+          }
+        }
+      }
+    },
+    "/subjects/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns subject by id",
+            "schema": {
+              "$ref": "#/definitions/Subject"
+            }
+          },
+          "400": {
+            "description": "Subject with given id does not exist"
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          },
+          {
+            "$ref": "#/parameters/subjectData"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subject updated",
+            "schema": {
+              "$ref": "#/definitions/Subject"
+            }
+          },
+          "400": {
+            "description": "Failed to update subject"
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subject deleted",
+            "schema": {
+              "$ref": "#/definitions/Subject"
+            }
+          },
+          "400": {
+            "description": "Subject with given id does not exist."
+          }
+        }
+      }
+    },
+    "/subjectUsers": {
+      "get": {
+        "description": "Show subjectUsers",
+        "responses": {
+          "200": {
+            "description": "Show groups by userid",
+            "schema": {
+              "$ref": "#/definitions/SubjectUsers"
+            }
+          },
+          "400": {
+            "description": "Failed to show subjectsUsers"
+          }
+        }
+      }
+    },
+    "/testQuestions": {
+      "get": {
+        "description": "Show testQuestions",
+        "responses": {
+          "200": {
+            "description": "Show testQuestions by userid",
+            "schema": {
+              "$ref": "#/definitions/TestQuestions"
+            }
+          },
+          "400": {
+            "description": "Failed to show testQuestions"
+          }
+        }
+      }
+    },
+    "/tests/:testId/results": {
+      "get": {
+        "description": "Show results by testId",
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Show decks by testId"
+          }
+        }
+      }
+    },
+    "/users/{userId}/results": {
+      "get": {
+        "description": "Show results by userId",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Show decks by userId"
+          }
+        }
+      }
+    },
+    "/users/{userId}/results/{id}": {
+      "get": {
+        "description": "Show result of user by id",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Show decks by userId"
+          }
+        }
+      }
+    },
+    "/users/{userId}/results/{id}/fill": {
+      "post": {
+        "description": "Send result of user by id",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "properties": {
+                "answerIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Show decks by userId"
+          }
+        }
+      }
+    },
+    "/choosenAnswers": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Returns a list of all choosenAnswer",
+            "schema": {
+              "$ref": "#/definitions/ChoosenAnswer"
+            }
+          },
+          "400": {
+            "description": "Failed to show choosenAnswers"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LoginRequest": {
+      "name": "body",
+      "in": "body",
+      "type": "object",
+      "schema": {
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "User": {
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "groupId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Question": {
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "integer"
+        }
+      }
+    },
+    "Result": {
+      "properties": {
+        "testId": {
+          "type": "integer"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "CLOSED",
+            "PUBLISHED"
+          ]
+        }
+      }
+    },
+    "Test": {
+      "properties": {
+        "userId": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "time": {
+          "type": "integer"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "Group": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Answer": {
+      "properties": {
+        "questionId": {
+          "type": "integer"
+        },
+        "text": {
+          "type": "string"
+        },
+        "isCorrect": {
+          "type": "boolean"
+        },
+        "picture": {
+          "type": "string"
+        }
+      }
+    },
+    "SubjectUser": {
+      "properties": {
+        "subjectId": {
+          "type": "integer"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      }
+    },
+    "Subject": {
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "testQuestion": {
+      "properties": {
+        "questionId": {
+          "type": "integer"
+        },
+        "testId": {
+          "type": "integer"
+        }
+      }
+    },
+    "ChoosenAnswer": {
+      "properties": {
+        "resultId": {
+          "type": "integer"
+        },
+        "answerId": {
+          "type": "integer"
+        },
+        "points": {
+          "type": "integer"
+        }
+      }
+    },
+    "ChoosenAnswers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ChoosenAnswer"
+      }
+    },
+    "Answers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Answer"
+      }
+    },
+    "Users": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/User"
+      }
+    },
+    "Questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Question"
+      }
+    },
+    "Results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Result"
+      }
+    },
+    "Groups": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Group"
+      }
+    },
+    "Subjects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Subject"
+      }
+    },
+    "SubjectUsers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/SubjectUsers"
+      }
+    },
+    "TestQuestions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TestQuestions"
+      }
+    }
+  },
+  "parameters": {
+    "id": {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "type": "integer"
+    },
+    "userData": {
+      "name": "user",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/User"
+      }
+    },
+    "questionData": {
+      "name": "question",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/Question"
+      }
+    },
+    "testData": {
+      "name": "test",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/Test"
+      }
+    },
+    "groupData": {
+      "name": "group",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/Group"
+      }
+    },
+    "answerData": {
+      "name": "answer",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/Answer"
+      }
+    },
+    "subjectData": {
+      "name": "subject",
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/Subject"
+      }
+    },
+    "createResultData": {
+      "name": "body",
+      "in": "body",
+      "schema": {
+        "properties": {
+          "userIds": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -84,5 +84,6 @@ typings/
 .dynamodb/
 
 config/config.json
+config/mailgun.json
 
 # End of https://www.gitignore.io/api/node

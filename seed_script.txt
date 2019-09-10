@@ -1,0 +1,11 @@
+./node_modules/.bin/sequelize db:migrate &&
+sequelize db:seed --seed 20190205180826-groups && 
+sequelize db:seed --seed 20190205141138-subjects && 
+sequelize db:seed --seed 20190205140212-users &&
+sequelize db:seed --seed 20190205181617-subjectusers &&
+sequelize db:seed --seed 20190205174618-questions && 
+sequelize db:seed --seed 20190205175447-answers &&
+sequelize db:seed --seed 20190205173611-tests &&
+sequelize db:seed --seed 20190205152132-results && 
+sequelize db:seed --seed 20190205180135-choosenanswers &&
+sequelize db:seed --seed 20190205182525-testquestions
